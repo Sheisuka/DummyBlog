@@ -1,0 +1,27 @@
+{% extends "Blog/base.html" %}
+
+{% block title %}My dummy Blog{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="content">
+            <h1>Последние посты</h1>
+            {% for post in posts %}
+                <div class="post">
+                    <h2>
+                        <a href="{% url 'Blog:post_detail' post.id %}">
+                            {{ post.title }}
+                        </a>
+                    </h2>
+                    <p class="date">
+                        Published {{ post.publish }} by {{ post.author }}
+                    </p>
+                    {{ post.body|truncatewords:30|linebreaks }}
+                </div>
+            {% endfor %}
+            <div class="pagination">
+                <!-- Pagination controls here -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
