@@ -1,0 +1,97 @@
+/* Общие стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FDF6E3;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Боковая панель */
+#sidebar {
+    padding: 20px;
+    background: #F4A261;
+    box-sizing: border-box;
+}
+
+/* Основное содержимое */
+#content {
+    padding: 0 20px 0 0;
+    box-sizing: border-box;
+}
+
+/* Пагинация */
+.pagination {
+    margin-top: auto; /* Размещаем пагинацию внизу контейнера */
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Шапка */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    margin-top: auto; /* Добавляем margin-top для выравнивания внизу */
+}
+
+/* Стили для постов */
+.post {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.post p.date {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+}
+
+.post a {
+    color: #FF851B;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post a:hover {
+    color: #E76F51;
+}
