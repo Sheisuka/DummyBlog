@@ -20,7 +20,7 @@
                 </div>
             {% endfor %}
             <div class="pagination">
-                <!-- Pagination controls here -->
+                {% include "Blog/pagination.html" with page=posts %}
             </div>
         </div>
     </div>
