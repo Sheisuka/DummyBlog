@@ -3,8 +3,10 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <div id="content">
-        <h1>{{ post.title }}</h1>
+    <div class="content">
+        <div class="header">
+            <h1>{{ post.title }}</h1>
+        </div>
         <p class="date">
             Published at {{ post.publish }} by {{ post.author }}
         </p>
@@ -14,7 +16,6 @@
                 Share this post
             </a>
         </p>
-    </div>
     {% with comments.count as total_comments %}
         <h2>
             {{ total_comments }} comment{{ total_comments|pluralize}}
@@ -32,4 +33,5 @@
         <p>There are no comments</p>
     {% endfor %}
     {% include "blog/post/includes/comment_form.html" %}
+    </div>
 {% endblock %}

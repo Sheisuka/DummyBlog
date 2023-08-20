@@ -3,25 +3,21 @@
 {% block title %}My dummy Blog{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div id="content">
+    <div class="content">
+        <div class="header">
             <h1>Последние посты</h1>
+        </div>
+        <div class="posts">
             {% for post in posts %}
                 <div class="post">
-                    <h2>
-                        <a href="{{ post.get_absolute_url }}">
-                            {{ post.title }}
-                        </a>
-                    </h2>
+                    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                    {{ post.body|truncatewords:30|linebreaks }}
                     <p class="date">
                         Published {{ post.publish }} by {{ post.author }}
                     </p>
-                    {{ post.body|truncatewords:30|linebreaks }}
                 </div>
             {% endfor %}
-            <div class="pagination">
-                {% include "Blog/pagination.html" with page=posts %}
-            </div>
         </div>
+        {% include "Blog/pagination.html" with page=posts %}
     </div>
 {% endblock %}
