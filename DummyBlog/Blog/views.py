@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView
+from taggit.models import Tag
 
 from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
@@ -18,16 +19,20 @@ def post_detail(request, year, month, day, post):
                                                     'form': form})
 
 
-def post_list(request):
-    posts = Post.published.all()
-    paginator = Paginator(posts, 6) # Создаём пагинатор с разбивкой по 6 постов на страницу
+def post_list(request, tag_slug=None):
+    post_list = Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        post_list = post_list.filter(tags__in=[tag])
+    paginator = Paginator(post_list, 6) # Создаём пагинатор с разбивкой по 6 постов на страницу
     page_number = request.GET.get('page', 1) # Получаем номер страницы из запроса, 1 - если нет атрибута page
     try:
         posts = paginator.page(page_number)
     except (EmptyPage, PageNotAnInteger):
         posts = paginator.page(1)
 
-    return render(request, 'Blog/post/list.html', {'posts': posts})
+    return render(request, 'Blog/post/list.html', {'posts': posts, 'tag': tag})
 
 
 def post_share(request, year, month, day, post):
