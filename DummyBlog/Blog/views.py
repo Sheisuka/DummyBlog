@@ -10,6 +10,10 @@ from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
 from os import environ
 
+
+def index(request):
+    return render(request, 'blog/index.html')
+
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, publish__year=year, publish__month=month, 
                             publish__day=day, slug=post, status=Post.Status.PUBLISHED)
